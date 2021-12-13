@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 
 public class QueueTest {
     Queue queue;
+    Queue queue1;
     @Before
     public void setUp() {
         queue = new Queue();
@@ -13,18 +14,30 @@ public class QueueTest {
         queue.enqueue(2);
         queue.enqueue(3);
         queue.enqueue(4);
+
+        queue1 = new Queue();
     }
 
     @Test
-    public void peek() {
+    public void dequeue() {
         assertEquals(1, queue.dequeue());
         assertEquals(2, queue.dequeue());
         assertEquals(3, queue.dequeue());
     }
 
     @Test
-    public void dequeue() {
+    public void peek() {
         assertEquals(1, queue.peek());
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void peekError(){
+        queue1.peek();
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void dequeueError(){
+        queue1.dequeue();
     }
 
 }

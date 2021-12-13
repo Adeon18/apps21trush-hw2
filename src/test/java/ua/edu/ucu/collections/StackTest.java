@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 
 public class StackTest {
     private Stack stack;
+    private Stack stack1;
 
     @Before
     public void setUp() {
@@ -14,6 +15,7 @@ public class StackTest {
         for (int i : new int[]{1, 2, 3, 4, 5}) {
             stack.push(i);
         }
+        stack1 = new Stack();
     }
 
     @Test
@@ -28,5 +30,15 @@ public class StackTest {
     @Test
     public void peek() {
         assertEquals(5, stack.peek());
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void errorPeek() {
+        stack1.peek();
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void errorPop() {
+        stack1.pop();
     }
 }

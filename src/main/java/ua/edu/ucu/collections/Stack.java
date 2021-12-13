@@ -6,15 +6,21 @@ import java.util.EmptyStackException;
 
 public class Stack {
 
+    public ImmutableLinkedList getStack() {
+        return stack;
+    }
+
     private ImmutableLinkedList stack = new ImmutableLinkedList();
 
     public void push(Object e) {
-        stack.addLast(e);
+        stack = stack.addLast(e);
     }
 
     public Object pop() {
         if (!stack.isEmpty()) {
-            return stack.remove(stack.size() - 1);
+            Object element = stack.getLast();
+            stack = stack.removeLast();
+            return element;
         }
         throw new ArrayIndexOutOfBoundsException();
     }
@@ -25,4 +31,14 @@ public class Stack {
         }
         throw new ArrayIndexOutOfBoundsException();
     }
+
+    public static void main(String[] args) {
+        Stack stack = new Stack();
+        System.out.println(stack.getStack().toString());
+        stack.push(5);
+        System.out.println(stack.getStack().toString());
+        stack.pop();
+        System.out.println(stack.getStack().toString());
+    }
+
 }

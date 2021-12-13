@@ -46,11 +46,18 @@ public final class ImmutableArrayList implements ImmutableList {
 
     @Override
     public Object get(int index) {
+        if (index >= elementArrayList.length) {
+            throw new IndexOutOfBoundsException();
+        }
         return elementArrayList[index];
     }
 
     @Override
     public ImmutableList remove(int index) {
+
+        if (index >= elementArrayList.length) {
+            throw new IndexOutOfBoundsException();
+        }
 
         Object[] newArray = new Object[elementArrayList.length - 1];
 
@@ -64,6 +71,10 @@ public final class ImmutableArrayList implements ImmutableList {
 
     @Override
     public ImmutableList set(int index, Object e) {
+
+        if (index >= elementArrayList.length) {
+            throw new IndexOutOfBoundsException();
+        }
 
         Object[] newArray = new Object[elementArrayList.length];
 

@@ -1,5 +1,7 @@
 package ua.edu.ucu.collections.immutable;
 
+import java.util.Arrays;
+
 public final class ImmutableLinkedList implements ImmutableList {
 
     private final Node head = new Node();
@@ -70,6 +72,11 @@ public final class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public Object get(int index) {
+
+        if (index >= length) {
+            throw new IndexOutOfBoundsException();
+        }
+
         Node prev_node = head;
 
         for (int i = 0; i < index; i++){
@@ -81,6 +88,14 @@ public final class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableList remove(int index) {
+
+        if (index >= length) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        if (length == 1) {
+            return new ImmutableLinkedList();
+        }
 
         Object[] newArray = new Object[length - 1];
 
@@ -100,6 +115,10 @@ public final class ImmutableLinkedList implements ImmutableList {
     @Override
     public ImmutableList set(int index, Object e) {
 
+        if (index >= length) {
+            throw new IndexOutOfBoundsException();
+        }
+
         Object[] newArray = new Object[length];
 
         Node prev_node = head;
@@ -109,8 +128,8 @@ public final class ImmutableLinkedList implements ImmutableList {
                 newArray[i] = e;
             } else {
                 newArray[i] = prev_node.getValue();
-                prev_node = prev_node.getNext();
             }
+            prev_node = prev_node.getNext();
         }
 
         return new ImmutableLinkedList(newArray);
@@ -180,18 +199,35 @@ public final class ImmutableLinkedList implements ImmutableList {
     }
 
     public Object getFirst() {
+
+        if (isEmpty()) {
+            throw new IndexOutOfBoundsException();
+        }
+
         return head.getValue();
     }
 
     public Object getLast() {
+        if (isEmpty()) {
+            throw new IndexOutOfBoundsException();
+        }
+
         return tail.getValue();
     }
 
     public ImmutableLinkedList removeFirst() {
+        if (isEmpty()) {
+            throw new IndexOutOfBoundsException();
+        }
+
         return (ImmutableLinkedList) remove(0);
     }
 
     public ImmutableLinkedList removeLast() {
+        if (isEmpty()) {
+            throw new IndexOutOfBoundsException();
+        }
+
         return (ImmutableLinkedList) remove(length - 1);
     }
 
@@ -202,7 +238,7 @@ public final class ImmutableLinkedList implements ImmutableList {
 
         Node prev_node = head;
         for (int i = 0; i < length; i++) {
-            repr.append(prev_node.getValue() + ", ");
+            repr.append(prev_node.getValue()).append(", ");
             prev_node = prev_node.getNext();
         }
         repr.append("}");
@@ -211,12 +247,13 @@ public final class ImmutableLinkedList implements ImmutableList {
     }
 
     public static void main(String[] args) {
-        Object[] j = new Object[]{1, 2, 3, 9, 10};
+        Object[] j = new Object[]{4, 3, 1, 5};
         Object[] k = new Object[]{4, 5, 6, 7, 8};
 
         ImmutableLinkedList i1 = new ImmutableLinkedList(j);
+        i1 = (ImmutableLinkedList) i1.set(1, 1);
 
-        System.out.println(i1.get(3));
+        System.out.println(i1.toString());
 
 //        ImmutableList i2 = i1.get(1, 3);
 

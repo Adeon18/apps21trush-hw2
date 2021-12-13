@@ -15,12 +15,14 @@ public class Queue {
 
     public Object dequeue() {
         if (!queue.isEmpty()) {
-            return queue.remove(0);
+            Object element = queue.getFirst();
+            queue = queue.removeFirst();
+            return element;
         }
         throw new ArrayIndexOutOfBoundsException();
     }
 
     public void enqueue(Object e) {
-        queue.addLast(e);
+        queue = queue.addLast(e);
     }
 }
