@@ -122,25 +122,4 @@ public final class ImmutableArrayList implements ImmutableList {
 
         return newArray;
     }
-
-    public static void main(String[] args) {
-        Object[] j = new Object[]{1, 2, 3, 9, 10};
-        Object[] k = new Object[]{4, 5, 6, 7, 8};
-
-        ImmutableArrayList i1 = new ImmutableArrayList(j);
-
-        System.out.println(i1.toString());
-
-        ImmutableList i2 = i1.remove(2);
-
-        System.out.println(i2.toString());
-
-    }
-
-    @Override
-    public String toString() {
-        return "ImmutableArrayList{" +
-                "elementArrayList=" + Arrays.toString(elementArrayList) +
-                '}';
-    }
 }

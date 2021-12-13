@@ -2,13 +2,7 @@ package ua.edu.ucu.collections;
 
 import ua.edu.ucu.collections.immutable.ImmutableLinkedList;
 
-import java.util.EmptyStackException;
-
 public class Stack {
-
-    public ImmutableLinkedList getStack() {
-        return stack;
-    }
 
     private ImmutableLinkedList stack = new ImmutableLinkedList();
 
@@ -31,14 +25,4 @@ public class Stack {
         }
         throw new ArrayIndexOutOfBoundsException();
     }
-
-    public static void main(String[] args) {
-        Stack stack = new Stack();
-        System.out.println(stack.getStack().toString());
-        stack.push(5);
-        System.out.println(stack.getStack().toString());
-        stack.pop();
-        System.out.println(stack.getStack().toString());
-    }
-
 }

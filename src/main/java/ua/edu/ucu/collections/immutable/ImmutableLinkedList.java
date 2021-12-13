@@ -230,33 +230,4 @@ public final class ImmutableLinkedList implements ImmutableList {
 
         return (ImmutableLinkedList) remove(length - 1);
     }
-
-    @Override
-    public String toString() {
-
-        StringBuilder repr = new StringBuilder("ImmutableLinkedList{");
-
-        Node prev_node = head;
-        for (int i = 0; i < length; i++) {
-            repr.append(prev_node.getValue()).append(", ");
-            prev_node = prev_node.getNext();
-        }
-        repr.append("}");
-
-        return repr.toString();
-    }
-
-    public static void main(String[] args) {
-        Object[] j = new Object[]{4, 3, 1, 5};
-        Object[] k = new Object[]{4, 5, 6, 7, 8};
-
-        ImmutableLinkedList i1 = new ImmutableLinkedList(j);
-        i1 = (ImmutableLinkedList) i1.set(1, 1);
-
-        System.out.println(i1.toString());
-
-//        ImmutableList i2 = i1.get(1, 3);
-
-//        System.out.println(i2.toString());
-    }
 }
